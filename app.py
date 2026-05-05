@@ -3,10 +3,10 @@ import pandas as pd
 import joblib
 import time
 
-# 1. Page Configuration (Full Width & Professional Branding)
+# 1. Page Configuration
 st.set_page_config(page_title="Aura Core | Business Intelligence", page_icon="💎", layout="wide")
 
-# 2. Advanced CSS for UI/UX Designer Touch
+# 2. CSS 
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
@@ -97,7 +97,7 @@ def load_assets():
 
 model, scaler = load_assets()
 
-# 4. Hero Branding Section
+# 4. Hero Section
 st.markdown(f"""
 <div class="hero-container">
     <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -171,7 +171,7 @@ if st.button("Generate Diagnostic Report"):
 
         st.markdown("---")
         
-        # 7. Result Presentation Layer (The Intelligent Insight Version)
+        # 7. Result Presentation Layer 
         res_col1, res_col2 = st.columns([1, 1.5])
         
         if prob > 0.5:
