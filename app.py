@@ -216,6 +216,6 @@ if st.button("Generate Diagnostic Report"):
 st.markdown("""
 <br><hr>
 <div style="text-align: center; color: #94A3B8; font-size: 0.85rem; padding: 10px;">
-    Aura Core Intelligence System © 2026 • Strategy & Interface by UI/UX Lead
+    Aura Core Intelligence System © 2026 • Strategy & Interface by Yasmen Wageeh
 </div>
 """, unsafe_allow_html=True)
