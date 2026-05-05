@@ -3,8 +3,8 @@ import pandas as pd
 import joblib
 import time
 
-# 1. Page Configuration (Full Width)
-st.set_page_config(page_title="Aura Core | Intelligence", page_icon="💎", layout="wide")
+# 1. Page Configuration (Full Width & Professional Branding)
+st.set_page_config(page_title="Aura Core | Business Intelligence", page_icon="💎", layout="wide")
 
 # 2. Advanced CSS for UI/UX Designer Touch
 st.markdown("""
@@ -25,13 +25,7 @@ st.markdown("""
         box-shadow: 0 20px 40px rgba(128, 0, 32, 0.15);
     }
 
-    /* Stepper Styling: Centering text and customizing buttons */
-    div[data-testid="stNumberInput"] {
-        background-color: transparent !important;
-        border: none !important;
-    }
-    
-    /* Centering the Input Value */
+    /* Centering the Number Input Value */
     div[data-testid="stNumberInput"] input {
         text-align: center !important;
         font-weight: 700 !important;
@@ -67,6 +61,7 @@ st.markdown("""
         border: 1px solid #F1F5F9;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         margin-bottom: 10px;
+        height: 100%;
     }
 
     /* The Main Action Button */
@@ -98,7 +93,6 @@ def load_assets():
         scaler = joblib.load('scaler.pkl')
         return model, scaler
     except Exception as e:
-        st.error(f"Error loading model files: {e}")
         return None, None
 
 model, scaler = load_assets()
@@ -109,7 +103,7 @@ st.markdown(f"""
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <div>
             <h1 style="margin: 0; font-size: 2.8rem; font-weight: 700;">Aura Core Analytics</h1>
-            <p style="margin: 5px 0 0 0; opacity: 0.85; font-size: 1.2rem; font-weight: 300;">Strategic Intelligence Dashboard • Version 2.0</p>
+            <p style="margin: 5px 0 0 0; opacity: 0.85; font-size: 1.2rem; font-weight: 300;">Strategic Intelligence Dashboard • Version 2.1</p>
         </div>
         <div style="background: rgba(255,255,255,0.15); padding: 15px 25px; border-radius: 15px; backdrop-filter: blur(10px);">
             <small style="display: block; opacity: 0.7;">Engine Status</small>
@@ -119,7 +113,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# 5. Dashboard Grid (The 10 Required Features)
+# 5. Dashboard Grid (Inputs)
 st.markdown("<h3 style='margin-bottom: 20px; color: #1E293B;'>📊 Behavioral Diagnostic Workspace</h3>", unsafe_allow_html=True)
 col_a, col_b, col_c = st.columns(3, gap="large")
 
@@ -154,7 +148,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 if st.button("Generate Diagnostic Report"):
     if model and scaler:
         with st.status("Computing Predictive Analytics...", expanded=False) as status:
-            time.sleep(1.2) # To simulate complex calculation for UX
+            time.sleep(1.2) # To simulate complex calculation for UX effect
             
             # Feature Encoding Logic
             g_map = {"Female": 0, "Male": 1}
@@ -177,30 +171,51 @@ if st.button("Generate Diagnostic Report"):
 
         st.markdown("---")
         
-        # Result Presentation Layer
+        # 7. Result Presentation Layer (The Intelligent Insight Version)
         res_col1, res_col2 = st.columns([1, 1.5])
         
         if prob > 0.5:
-            res_col1.error(f"### RISK DETECTED: {prob:.1%}")
+            res_col1.error(f"### ⚠️ HIGH RISK: {prob:.1%}")
+            
+            # Custom Intelligence Insights
+            advice = ""
+            if support_calls > 3:
+                advice += "• **Tech Issue:** High volume of support calls. Customer needs a technical health check.<br>"
+            if delay > 5:
+                advice += "• **Billing Issue:** Frequent payment delays. Propose a flexible billing schedule.<br>"
+            if usage_freq < 10:
+                advice += "• **Low Adoption:** Usage is dropping. Send a personalized 'Feature Discovery' guide.<br>"
+            
+            if not advice:
+                advice = "• Pattern matches departing customers. Immediate proactive outreach is required."
+
             res_col2.markdown(f"""
-            <div style="background: #FEF2F2; padding: 20px; border-radius: 15px; border-left: 5px solid #DC2626;">
-                <h4 style="color: #991B1B; margin-top:0;">⚠️ High Churn Probability</h4>
-                <p style="color: #7F1D1D;">The user behavior matches pattern of departing customers. 
-                Immediate retention outreach is recommended. Consider offering a <b>loyalty discount</b>.</p>
+            <div style="background: #FEF2F2; padding: 25px; border-radius: 18px; border-left: 6px solid #DC2626;">
+                <h4 style="color: #991B1B; margin-top:0;">Actionable Intelligence</h4>
+                <p style="color: #7F1D1D; line-height: 1.6;">{advice}</p>
+                <hr style="border-color: #FCA5A5;">
+                <p style="color: #991B1B; font-weight: 700; font-size: 1.1rem;">Final Decision: Send 15% Retention Discount.</p>
             </div>
             """, unsafe_allow_html=True)
         else:
-            res_col1.success(f"### LOYALTY STATUS: {1-prob:.1%}")
+            res_col1.success(f"### ✅ STABLE: {1-prob:.1%}")
             res_col2.markdown(f"""
-            <div style="background: #F0FDF4; padding: 20px; border-radius: 15px; border-left: 5px solid #16A34A;">
-                <h4 style="color: #166534; margin-top:0;">✅ Stable Customer Profile</h4>
-                <p style="color: #14532D;">Customer exhibits strong retention signals. 
-                This user is an excellent candidate for <b>Premium tier upsells</b>.</p>
+            <div style="background: #F0FDF4; padding: 25px; border-radius: 18px; border-left: 6px solid #16A34A;">
+                <h4 style="color: #166534; margin-top:0;">Growth Potential Detected</h4>
+                <p style="color: #14532D; line-height: 1.6;">• Customer exhibits strong long-term loyalty signals.<br>
+                • Strategic candidate for <b>Premium Tier</b> migration and cross-selling.</p>
+                <hr style="border-color: #BBF7D0;">
+                <p style="color: #166534; font-weight: 700; font-size: 1.1rem;">Final Decision: Invite to Exclusive Beta Program.</p>
             </div>
             """, unsafe_allow_html=True)
             st.balloons()
     else:
-        st.error("Model files not found in the root directory.")
+        st.error("Engine failure: Predictive model or scaler files are missing from the repository.")
 
-# 7. Footer (Professional Touch)
-st.markdown("<br><hr><p style='text-align: center; color: #94A3B8; font-size: 0.8rem;'>Aura Core Intelligence System © 2026 • Designed for High-Performance Analytics</p>", unsafe_allow_html=True)
+# 8. Professional Footer
+st.markdown("""
+<br><hr>
+<div style="text-align: center; color: #94A3B8; font-size: 0.85rem; padding: 10px;">
+    Aura Core Intelligence System © 2026 • Strategy & Interface by UI/UX Lead
+</div>
+""", unsafe_allow_html=True)
