@@ -4,7 +4,7 @@ import joblib
 import time
 
 # 1. Page Configuration
-st.set_page_config(page_title="Aura Core | Business Intelligence", page_icon="💎", layout="wide")
+st.set_page_config(page_title="Telecom Customer Churn Intelligence ", page_icon="💎", layout="wide")
 
 # 2. CSS 
 st.markdown("""
